@@ -16,7 +16,7 @@ window.title("Face Recognizer")
 dialogue_title = "Quit"
 dialogue_text = "Are you sure?"
 
-window.geometry('740x400')
+window.geometry('780x400')
 window.configure(background='#e0c596')
 message = tk.Label(window, text="Face Attendance Registry" ,bg="#557387"  ,fg="white"  ,width=30  ,height=2,font=('times', 20, 'italic bold underline')) 
 
@@ -126,8 +126,12 @@ trainImg = tk.Button(window, text="Train Images", command=training_lbph ,fg="bla
 trainImg.place(x=250, y=300)
 trackImg = tk.Button(window, text="Recognize", command=our_recognition ,fg="black"  ,bg="#ade0c9"  ,width=15  ,height=1, activebackground = "Red" ,font=('times', 10, ' bold '))
 trackImg.place(x=380, y=300)
-#AttendImg = tk.Button(window, text="Show Attendance", command=markAttendance ,fg="black"  ,bg="#ade0c9"  ,width=15  ,height=1, activebackground = "Red" ,font=('times', 10, ' bold '))
-#AttendImg.place(x=700, y=300)
+def att():
+    from subprocess import Popen
+    p = Popen('attendance.csv', shell=True)
+
+AttendImg = tk.Button(window, text="Show Attendance", command=att ,fg="black"  ,bg="#ade0c9"  ,width=15  ,height=1, activebackground = "Red" ,font=('times', 10, ' bold '))
+AttendImg.place(x=640, y=300)
 quitWindow = tk.Button(window, text="Quit", command=window.destroy, fg="black"  ,bg="#ade0c9"  ,width=15  ,height=1, activebackground = "Red" ,font=('times', 10, ' bold '))
 quitWindow.place(x=510, y=300)
 
