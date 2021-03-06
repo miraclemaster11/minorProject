@@ -1,8 +1,6 @@
 
 from cv2 import cv2
 import pickle
-import numpy as np
-import os
 from attendance import mark_attendance
 
 def our_recognition():

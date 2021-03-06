@@ -9,7 +9,7 @@ def mark_attendance(name):
             entry1=entry.split(',')
             if len(entry1)>1:
                 uniqueNameDate.append((entry1[0],entry1[1]))
-                #newlist is list of tuple containing name and date
+                #uniqueNameDate is list of tuple containing name and date
         #for line in myDataList:
         #    entry= line.split(',')
         #    nameList.append(entry[0])

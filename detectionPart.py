@@ -37,14 +37,18 @@ def capture(name, idd):
         raise IOError("cannot open webcam")
     # capture images until sample=60
     while True:
+        # 1st variable is boolean
         _, frame = video.read()
-        # gray frame
+        # gray frame as classifier uses gray images
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # scaleFactor - How much image size is reduced at each image scale
+        # minNeighbors - how many neighbors each candidate rectangle should have retain it
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=25)
         if len(faces) > 0:
             for x, y, w, h in faces:
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 sample += 1
+                # gray scale for face region only
                 cropped_gray = gray[y: y + h, x: x + w]
                 resized_gray = cv2.resize(cropped_gray, (100, 100))
                 cv2.imshow("new", resized_gray)
@@ -73,6 +77,5 @@ def user_input():
             break
     print("System taking pictures of you.Please smile :) \n")
     capture(name, unique_id)
-
 
 # user_input()

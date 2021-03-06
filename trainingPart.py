@@ -5,17 +5,17 @@ import os
 import pickle
 
 
-
 def training_lbph():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     image_dir = os.path.join(BASE_DIR, "TrainingImages")
     face_cascade = cv2.CascadeClassifier("assets/haarcascade_frontalface_default.xml")
     recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-
     current_id = 0
     label_ids = {}
+    # holds current_id for respective individual
     y_labels = []
+    # holds image array corresponding to y_labels
     x_train = []
     # print(os.walk(image_dir))
     # <generator object _walk at 0x000001AD08533660>
@@ -29,7 +29,7 @@ def training_lbph():
         # print("dir:", dirs)
         # dir: ['Aman Shrestha(7)', 'Aman(07)', 'Sudip paudyal(84)']
         print(files)
-        print("hhh")
+        # print("hhh")
         for file in files:
             if file.endswith('png') or file.endswith('jpg') or file.endswith("jpeg"):
                 path = os.path.join(root, file)
@@ -37,7 +37,7 @@ def training_lbph():
                 # print(path) gives absolute path of each image
                 label = os.path.basename(root).replace(" ", "-").lower()
                 print("label: ", label)
-                print("jjj")
+                # print("jjj")
                 # print(label) root basename in this case is emilia clarke and peter dinklage
                 #  now lets add peter-dinklage and emilia-clarke with no duplication
                 # print(label)
@@ -69,15 +69,15 @@ def training_lbph():
                 #
                 #
                 #
-                print(path)
-                print(id_)
+                # print(path)
+                # print(id_)
 
                 x_train.append(image_array)
                 y_labels.append(id_)
                 #  This is visualization bits we can delete it
                 i = cv2.cvtColor(image_array, cv2.COLOR_BGR2RGB)
-                #plt.imshow(i)
-                #plt.show()
+                # plt.imshow(i)
+                # plt.show()
                 # upto here
             #
             #
@@ -104,9 +104,9 @@ def training_lbph():
     # # print(help(recognizer.train))
     recognizer.save("trainner.yml")
     print("Trained")
-            #
-            #
-            #     # print(root, dirs, files)
-            # # C:\Users\aman1\minor project jupyter\Face recog 1\TrainingData ['Emilia Clarke', 'Peter Dinklage'] []
-            # # C:\Users\aman1\minor project jupyter\Face recog 1\TrainingData\Emilia Clarke [] ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg']
-            # # C:\Users\aman1\minor project jupyter\Face recog 1\TrainingData\Peter Dinklage [] ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg']
+    #
+    #
+    #     # print(root, dirs, files)
+    # # C:\Users\aman1\minor project jupyter\Face recog 1\TrainingData ['Emilia Clarke', 'Peter Dinklage'] []
+    # # C:\Users\aman1\minor project jupyter\Face recog 1\TrainingData\Emilia Clarke [] ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg']
+    # # C:\Users\aman1\minor project jupyter\Face recog 1\TrainingData\Peter Dinklage [] ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg']
